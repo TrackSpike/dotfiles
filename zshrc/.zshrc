@@ -100,9 +100,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export OPENAI_API_KEY='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'
-export SERPAPI_API_KEY='368f0cb6cf8d9a2a7e527f42954aeb20d73118b3b12eb4f07281e691d848d981'
-
 # Setting paths
 path+="$HOME/flutter/bin"
 path+="$HOME/.pub-cache/bin"
