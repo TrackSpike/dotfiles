@@ -104,6 +104,7 @@ source $ZSH/oh-my-zsh.sh
 path+="$HOME/flutter/bin"
 path+="$HOME/.pub-cache/bin"
 
+eval "$(atuin init zsh)"
 eval "$(zoxide init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
