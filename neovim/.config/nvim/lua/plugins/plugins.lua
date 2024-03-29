@@ -5,14 +5,15 @@
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
-  -- add gruvbox
+  -- color themes
   { "shaunsingh/nord.nvim" },
+  { "EdenEast/nightfox.nvim" },
 
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "nordfox",
     },
   },
 

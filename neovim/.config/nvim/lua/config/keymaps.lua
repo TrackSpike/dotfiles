@@ -2,6 +2,9 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+vim.keymap.set("n", "H", "<C-o>", { noremap = true, silent = true })
+vim.keymap.set("n", "L", "<C-i>", { noremap = true, silent = true })
+
 -- Resizing splits
 vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left)
 vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
