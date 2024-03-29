@@ -13,10 +13,8 @@ else
 fi
 
 # Setting paths
-path += (
-  "$HOME/flutter/bin"
-  "$HOME/.pub-cache/bin"
-)
+path+="$HOME/flutter/bin"
+path+="$HOME/.pub-cache/bin"
 
 # Loading Tools
 eval "$(atuin init zsh)"
