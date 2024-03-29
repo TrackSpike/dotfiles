@@ -8,3 +8,5 @@ function module.apply_to_config(config)
 	config.font = wezterm.font("FiraCode Nerd Font")
 	config.font_size = 15.0
 end
+
+return module

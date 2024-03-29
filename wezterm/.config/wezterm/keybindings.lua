@@ -4,7 +4,7 @@ local act = wezterm.action
 local module = {}
 
 local function switchWorkspaces()
-	wezterm.action_callback(function(window, pane)
+	return wezterm.action_callback(function(window, pane)
 		local workspaces = {}
 		for _, name in ipairs(wezterm.mux.get_workspace_names()) do
 			table.insert(workspaces, { id = name, label = name })
@@ -37,26 +37,28 @@ local function switchWorkspaces()
 end
 
 local function createWorkspace()
-	act.PromptInputLine({
-		description = wezterm.format({
-			{ Attribute = { Intensity = "Bold" } },
-			{ Foreground = { AnsiColor = "Fuchsia" } },
-			{ Text = "Enter name for new workspace" },
-		}),
-		action = wezterm.action_callback(function(window, pane, line)
-			-- line will be `nil` if they hit escape without entering anything
-			-- An empty string if they just hit enter
-			-- Or the actual line of text they wrote
-			if line then
-				window:perform_action(
-					act.SwitchToWorkspace({
-						name = line,
-					}),
-					pane
-				)
-			end
-		end),
-	})
+	return wezterm.action_callback(function(window, pane)
+		window:perform_action(
+			act.PromptInputLine({
+				description = wezterm.format({
+					{ Attribute = { Intensity = "Bold" } },
+					{ Foreground = { AnsiColor = "Fuchsia" } },
+					{ Text = "Enter name for new workspace" },
+				}),
+				action = wezterm.action_callback(function(_, _, line)
+					if line then
+						window:perform_action(
+							act.SwitchToWorkspace({
+								name = line,
+							}),
+							pane
+						)
+					end
+				end),
+			}),
+			pane
+		)
+	end)
 end
 
 function module.apply_to_config(config)
