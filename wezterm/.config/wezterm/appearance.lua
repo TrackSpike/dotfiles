@@ -7,6 +7,14 @@ function module.apply_to_config(config)
 	config.enable_tab_bar = false
 	config.font = wezterm.font("FiraCode Nerd Font")
 	config.font_size = 15.0
+	config.background = {
+		{
+			source = {
+				File = wezterm.home_dir .. "/.config/wezterm/nord-mountain-2.jpeg",
+			},
+			hsb = { brightness = 0.5 },
+		},
+	}
 end
 
 return module
