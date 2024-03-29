@@ -12,7 +12,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nord",
+      colorscheme = "tokyonight",
     },
   },
 
@@ -34,7 +34,7 @@ return {
       },
     },
   },
-
+  { "mrjones2014/smart-splits.nvim" },
   -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
   -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
   { import = "lazyvim.plugins.extras.lang.typescript" },
