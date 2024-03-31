@@ -3,9 +3,11 @@ return {
   event = "VimEnter",
   config = function()
     require("dashboard").setup({
-      theme = "hyper",
+      theme = "doom",
       config = {
         header = {
+          "                                                                       ",
+          "                                                                       ",
           "                                                                       ",
           "  ██████   █████                   █████   █████  ███                  ",
           " ░░██████ ░░███                   ░░███   ░░███  ░░░                   ",
@@ -16,21 +18,51 @@ return {
           "  █████  ░░█████░░██████ ░░██████     ░░███      █████ █████░███ █████ ",
           " ░░░░░    ░░░░░  ░░░░░░   ░░░░░░       ░░░      ░░░░░ ░░░░░ ░░░ ░░░░░  ",
           "                                                                       ",
+          "                                                                       ",
+          "                                                                       ",
         },
-        week_header = {
-          enable = false,
-        },
-        shortcut = {
-          { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
+        center = {
           {
-            icon = " ",
-            icon_hl = "@variable",
-            desc = "Files",
-            group = "Label",
-            action = "Telescope find_files",
+            action = LazyVim.telescope("files"),
+            desc = " Find File",
+            icon = " ",
             key = "f",
           },
+          {
+            action = "ene | startinsert",
+            desc = " New File",
+            icon = " ",
+            key = "n",
+          },
+          {
+            action = "Telescope oldfiles",
+            desc = " Recent Files",
+            icon = " ",
+            key = "r",
+          },
+          {
+            action = "Telescope live_grep",
+            desc = " Find Text",
+            icon = " ",
+            key = "g",
+          },
+          { action = [[lua LazyVim.telescope.config_files()()]], desc = " Config", icon = " ", key = "c" },
+          {
+            action = 'lua require("persistence").load()',
+            desc = " Restore Session",
+            icon = " ",
+            key = "s",
+          },
+          {
+            action = "qa",
+            desc = " Quit",
+            icon = " ",
+            key = "q",
+          },
         },
+        footer = function()
+          return { "A craftsman must sharpen his tools to do his job" }
+        end,
       },
     })
   end,

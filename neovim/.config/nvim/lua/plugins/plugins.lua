@@ -29,10 +29,8 @@ return {
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
-      servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
-      },
+      ---@diagnostic disable-next-line: missing-fields
+      servers = {},
     },
   },
   { "mrjones2014/smart-splits.nvim" },
@@ -46,6 +44,7 @@ return {
     opts = {
       ensure_installed = {
         "bash",
+        "go",
         "html",
         "javascript",
         "json",
