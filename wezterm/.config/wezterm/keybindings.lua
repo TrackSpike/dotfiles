@@ -1,65 +1,8 @@
 local wezterm = require("wezterm")
+local workspace = require("workspace_utils")
 local act = wezterm.action
 
 local module = {}
-
-local function switchWorkspaces()
-	return wezterm.action_callback(function(window, pane)
-		local workspaces = {}
-		for _, name in ipairs(wezterm.mux.get_workspace_names()) do
-			table.insert(workspaces, { id = name, label = name })
-		end
-		window:perform_action(
-			act.InputSelector({
-				action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
-					if not id and not label then
-						wezterm.log_info("cancelled")
-					else
-						inner_window:perform_action(
-							act.SwitchToWorkspace({
-								name = label,
-							}),
-							inner_pane
-						)
-					end
-				end),
-				title = "Choose Workspace",
-				choices = workspaces,
-				fuzzy = true,
-				fuzzy_description = wezterm.format({
-					{ Attribute = { Intensity = "Bold" } },
-					{ Text = "Workspace: " },
-				}),
-			}),
-			pane
-		)
-	end)
-end
-
-local function createWorkspace()
-	return wezterm.action_callback(function(window, pane)
-		window:perform_action(
-			act.PromptInputLine({
-				description = wezterm.format({
-					{ Attribute = { Intensity = "Bold" } },
-					{ Foreground = { AnsiColor = "Fuchsia" } },
-					{ Text = "Enter name for new workspace" },
-				}),
-				action = wezterm.action_callback(function(_, _, line)
-					if line then
-						window:perform_action(
-							act.SwitchToWorkspace({
-								name = line,
-							}),
-							pane
-						)
-					end
-				end),
-			}),
-			pane
-		)
-	end)
-end
 
 function module.apply_to_config(config)
 	config.keys = {
@@ -79,13 +22,18 @@ function module.apply_to_config(config)
 		-- workspaces
 		{
 			mods = "CMD",
-			key = "x",
-			action = switchWorkspaces(),
+			key = "l",
+			action = workspace.switch_workspace(),
 		},
 		{
-			mods = "CMD|SHIFT",
-			key = "N",
-			action = createWorkspace(),
+			mods = "CMD",
+			key = "x",
+			action = workspace.rename_workspace(),
+		},
+		{
+			mods = "CMD",
+			key = "p",
+			action = workspace.createWorkspace(),
 		},
 	}
 end
