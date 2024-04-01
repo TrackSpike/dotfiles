@@ -12,6 +12,11 @@ function module.apply_to_config(config)
 		{ mods = "CMD", key = "LeftArrow", action = act.SendKey({ mods = "CTRL", key = "a" }) },
 		{ mods = "CMD", key = "RightArrow", action = act.SendKey({ mods = "CTRL", key = "e" }) },
 		{ mods = "CMD", key = "Backspace", action = act.SendKey({ mods = "CTRL", key = "u" }) },
+		{
+			mods = "CMD",
+			key = "w",
+			action = act.CloseCurrentPane({ confirm = true }),
+		},
 
 		-- move to panes
 		{ mods = "CTRL", key = "h", action = act.ActivatePaneDirection("Left") },
@@ -27,12 +32,7 @@ function module.apply_to_config(config)
 		},
 		{
 			mods = "CMD",
-			key = "x",
-			action = workspace.rename_workspace(),
-		},
-		{
-			mods = "CMD",
-			key = "p",
+			key = "o",
 			action = workspace.createWorkspace(),
 		},
 	}
