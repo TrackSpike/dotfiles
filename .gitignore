@@ -1,2 +1,4 @@
 tmux/.config/tmux/plugins/*
 .DS_Store
+zshrc/.zshrc.local
+neovim/.config/nvim/lazy-lock.json
