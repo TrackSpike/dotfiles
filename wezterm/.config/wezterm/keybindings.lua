@@ -32,6 +32,11 @@ function module.apply_to_config(config)
 		},
 		{
 			mods = "CMD",
+			key = "x",
+			action = workspace.rename_workspace(),
+		},
+		{
+			mods = "CMD",
 			key = "o",
 			action = workspace.createWorkspace(),
 		},

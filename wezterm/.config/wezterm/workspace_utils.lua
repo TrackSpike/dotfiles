@@ -17,14 +17,17 @@ end
 
 function module.rename_workspace()
 	return wezterm.action_callback(function(window, pane)
-		window:perform_action(act.PromptInputLine({
-			description = "Enter new name for Workspace",
-			action = wezterm.action_callback(function(window, pane, line)
-				if line then
-					window:active_tab():set_title(line)
-				end
-			end),
-		}))
+		window:perform_action(
+			act.PromptInputLine({
+				description = "Enter new name for Workspace",
+				action = wezterm.action_callback(function(inner_window, inner_pane, line)
+					if line then
+						wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
+					end
+				end),
+			}),
+			pane
+		)
 	end)
 end
 
@@ -117,6 +120,9 @@ function module.createWorkspace()
 							inner_pane
 						)
 					end
+
+					-- add to directory score
+					os.execute("zoxide add " .. id)
 				end),
 				title = "Choose Workspace",
 				choices = dirs,
