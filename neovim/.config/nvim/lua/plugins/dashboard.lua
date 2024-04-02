@@ -61,7 +61,7 @@ return {
           },
         },
         footer = function()
-          return { "A craftsman must sharpen his tools to do his job" }
+          return { "Sharp tools make good work." }
         end,
       },
     })
