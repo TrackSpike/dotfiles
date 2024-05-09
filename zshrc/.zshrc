@@ -19,4 +19,6 @@ fi
 # Loading Tools
 eval "$(atuin init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/fzf-git.sh
