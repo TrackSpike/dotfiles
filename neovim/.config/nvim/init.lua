@@ -807,6 +807,11 @@ require('lazy').setup({
           { name = 'luasnip', group_index = 2 },
           { name = 'path', group_index = 2 },
         },
+        window = {
+          documentation = {
+            border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+          },
+        },
       }
     end,
   },
